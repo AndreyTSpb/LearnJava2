@@ -84,9 +84,9 @@ public class Main {
     }
 
     public static class ReadingFromThread extends Thread{
-        private final Vector vector;
+        private final Vector<Double> vector;
 
-        public ReadingFromThread(Vector vector){
+        public ReadingFromThread(Vector<Double> vector){
             this.vector = vector;
         }
         @Override
@@ -97,7 +97,7 @@ public class Main {
         }
     }
 
-    public static void viewVector(Vector v){
+    public static void viewVector(Vector<Double> v){
         System.out.print("[");
         for (int i = 0; i < v.size(); i++){
             System.out.print(" "+String.format("%.2f", v.elementAt(i)));
