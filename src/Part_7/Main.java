@@ -16,7 +16,7 @@ import Part_7.JobWithSQL.*;
 public class Main {
 
     public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        /**
+        /*
          * 0) Удаляем старые таблицы если есть в БД
          */
         for (String tableName: JobWithSQL.tebles) {
@@ -24,7 +24,7 @@ public class Main {
                 JobWithSQL.deleteTable(tableName);
             }
         }
-        /**
+        /*
          * 1) Создание реляционных таблиц,
          *      перебираем список таблиц
          *      и отправляем запросы на их создание
@@ -36,7 +36,7 @@ public class Main {
             JobWithSQL.createTableSQLString(s, (String[]) method.invoke(null, null));
         }
 
-        /**
+        /*
          * 2) добавление нового объекта;
          */
         String[] departmntList = new String[]{"Бухгалтерия", "Склад", "Автохозяйство"};
@@ -47,16 +47,22 @@ public class Main {
         for (String user : usersList){
             addUser(user); //Заполним новыми объектами пользователей
         }
-
+        /*
+         * 3) Обновление данных: добавление пользователям отделов
+         */
         updateUser("Васько Пупкин", "Бухгалтерия");
         updateUser("Тарас Бульба", "Склад");
         updateUser("Себастьян Перейро", "Автохозяйство");
 
-        viewAllUserInfo();
+        viewAllUserInfo(); //вывод списка пользователей
 
+        /*
+         * 4) Удаление строки из таблицы Users
+         * условие поиска по имени пользователя
+         */
         deleteUser("Тарас Бульба");
 
-        viewAllUserInfo();
+        viewAllUserInfo(); //вывод списка пользователей
     }
 
     /**
@@ -113,8 +119,6 @@ public class Main {
      * @param departmentName
      */
     public static void updateUser(String nameUser, String departmentName){
-        //int idDepartment = selectIdDepartment(departmentName); //id отдела через его название
-        //String queryUpdate = "UPDATE `users` SET `id_department` = ? WHERE `users`.`name` LIKE ?;";
         String queryUpdate = "UPDATE `users` " +
                 "SET `id_department` = (SELECT id FROM `department` WHERE name LIKE ? LIMIT 1) " +
                 "WHERE `users`.`name` LIKE ?;"; //через вложенный запрос
