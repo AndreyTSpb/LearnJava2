@@ -1,4 +1,4 @@
-package Part_7.Mutex;
+package Part_5.Mutex;
 
 public class Mutex implements Runnable{
         private static final Object mutex = new Object();
