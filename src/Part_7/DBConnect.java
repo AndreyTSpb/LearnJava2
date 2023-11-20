@@ -9,11 +9,12 @@ import java.sql.SQLException;
  */
 public class DBConnect {
     // JDBC URL для подключения к MySQL
-    public static final String BD_NAME = "test";
     private static final String URL = "jdbc:mysql://localhost:3306/";
-    // Пользователь
+    //Имя базы данных
+    public static final String BD_NAME = "test";
+    // Пользователь БД
     private static final String USER = "root";
-    // Пасворд
+    // Пароль к БД
     private static final String PASSWORD = "root";
 
     public static Connection getConnection() throws SQLException {

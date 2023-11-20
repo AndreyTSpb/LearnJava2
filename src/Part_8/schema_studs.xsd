@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://localhost" xmlns:w="http://localhost" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- Корневой блок -->
+    <xs:element name="StudentList" type="w:StudentListType"/>
+    <!-- Блок студент -->
+    <xs:complexType name="StudentListType">
+        <xs:sequence>
+            <xs:element type="w:StudentType" name="Student"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- Блок описания студена -->
+    <xs:complexType name="StudentType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="Name"/>
+            <xs:element type="xs:string" name="Group"/>
+            <xs:element type="xs:string" name="Phone"/>
+            <xs:element type="xs:string" name="Email"/>
+            <xs:element type="w:AddressType" name="Address"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- Блок раскрывающий адрес студента -->
+    <xs:complexType name="AddressType">
+        <xs:sequence>
+            <xs:element type="xs:int" name="Zip"/>
+            <xs:element type="xs:string" name="City"/>
+            <xs:element type="xs:string" name="Street"/>
+            <xs:element type="xs:byte" name="House"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

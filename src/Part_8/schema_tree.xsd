@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://localhost" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Node" type="NodeType"/>
+    <xs:complexType name="NodeType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="ValueNode"/>
+            <xs:element type="NodeType" name="Node" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
