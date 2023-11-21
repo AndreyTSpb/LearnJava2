@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Employees>
+    <Employee id="1">
+        <age>30</age>
+        <name>Иван</name>
+        <surname>Иванов</surname>
+        <salary>10000.00</salary>
+    </Employee>
+    <Employee id="2">
+        <age>35</age>
+        <name>Петр</name>
+        <surname>Петров</surname>
+        <salary>10000.00</salary>
+    </Employee>
+    <Employee id="3">
+        <age>40</age>
+        <name>Сидор</name>
+        <surname>Сидоров</surname>
+        <salary>10000.00</salary>
+    </Employee>
+    <Employee id="4">
+        <age>25</age>
+        <name>Василий</name>
+        <surname>Васильев</surname>
+        <salary>10000.00</salary>
+    </Employee>
+</Employees>

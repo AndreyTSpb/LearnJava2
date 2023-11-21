@@ -39,10 +39,8 @@ public class SAXParser {
 
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) node;
-
                 // id студента через атрибут
                 String id = node.getAttributes().getNamedItem("id").getNodeValue();
-
                 // имя студента
                 String name = elem.getElementsByTagName("Name")
                         .item(0).getChildNodes().item(0).getNodeValue();
@@ -55,8 +53,6 @@ public class SAXParser {
                 // email
                 String email = elem.getElementsByTagName("Email")
                         .item(0).getChildNodes().item(0).getNodeValue();
-
-
                 //Address
                 LinkedHashMap<String, String> address = new LinkedHashMap<>();
                 if(elem.getElementsByTagName("Address").getLength()>0){
@@ -69,9 +65,7 @@ public class SAXParser {
                     address.put("House", elem.getElementsByTagName("House")
                             .item(0).getChildNodes().item(0).getNodeValue());
                 }
-
-
-
+                //Добавляем в массив
                 students.add(new Student(id, name, group, phone, email, address));
             }
         }
@@ -79,8 +73,8 @@ public class SAXParser {
         // Print all
         System.out.println("----------------------------------------");
         System.out.println("Вывод данныр распарсеного XML");
-        for (Student empl : students)
-            System.out.println(empl.toString());
-
+        for (Student student : students){
+            System.out.println(student.toString());
+        }
     }
 }
