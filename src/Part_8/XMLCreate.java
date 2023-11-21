@@ -22,8 +22,8 @@ import java.util.LinkedHashMap;
 import java.util.Objects;
 
 public class XMLCreate {
-    public static String namespace = "http://localhost";
-    public static String fileName = "schema_studs";
+    public static String namespace = "http://localhost"; //Пространство имен
+    public static String fileName = "schema_studs"; //Имя файла
 
     public XMLCreate(LinkedHashMap<String, LinkedHashMap> studentList, LinkedHashMap<String, LinkedHashMap> studentAddressList) throws SAXException, ParserConfigurationException, TransformerException {
         String useDirectory = Paths.get("")
@@ -41,7 +41,9 @@ public class XMLCreate {
         Element rootElement = createElement(document, "StudentList", "", new HashMap<String, String>());//Создание корневого элемента
 
         for (String studKey : studentList.keySet()){
-            Element studentElement = createChildElement(document, rootElement, "Student", "", new HashMap<>());//Создание вложенных элементов
+            HashMap<String, String> arg = new HashMap<>();
+            arg.put("id", studKey);
+            Element studentElement = createChildElement(document, rootElement, "Student", "", arg);//Создание вложенных элементов
             LinkedHashMap<String, String> studValue = studentList.get(studKey);
             for (String studInfoKey : studValue.keySet()) {
 

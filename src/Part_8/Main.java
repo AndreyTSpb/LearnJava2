@@ -4,15 +4,20 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 
 public class Main {
     public static LinkedHashMap<String, LinkedHashMap> studentList;
     public static LinkedHashMap<String, LinkedHashMap> studentAddressList;
 
-    public static void main(String[] args) throws ParserConfigurationException, TransformerException, SAXException {
+    public static void main(String[] args) throws ParserConfigurationException, TransformerException, SAXException, IOException {
         studentsArr();
         new XMLCreate(studentList, studentAddressList);
+
+        new SAXParser();
+
+        new CountXML();
     }
 
     public static void studentsArr(){
@@ -37,10 +42,17 @@ public class Main {
         studInfo3.put("Email", "email_3@emai.com");
         studInfo3.put("Address", "");
 
+        LinkedHashMap<String, String> studInfo4 = new LinkedHashMap<String, String>();
+        studInfo4.put("Name", "Maximilian Voloshin");
+        studInfo4.put("Group", "Group-2");
+        studInfo4.put("Phone", "+7(555)155-55-55");
+        studInfo4.put("Email", "email_3@emai.com");
+
         studentList = new LinkedHashMap<String, LinkedHashMap>();
         studentList.put("studInfo1", studInfo1);
         studentList.put("studInfo2", studInfo2);
         studentList.put("studInfo3", studInfo3);
+        studentList.put("studInfo4", studInfo4);
 
         LinkedHashMap<String, String> studAddress1 = new LinkedHashMap<String, String>();
         studAddress1.put("Zip", "190021");

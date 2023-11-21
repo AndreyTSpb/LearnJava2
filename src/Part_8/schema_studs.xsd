@@ -3,9 +3,9 @@
     <!-- Корневой блок -->
     <xs:element name="StudentList" type="w:StudentListType"/>
     <!-- Блок студент -->
-    <xs:complexType name="StudentListType">
+    <xs:complexType name="StudentListType" >
         <xs:sequence>
-            <xs:element type="w:StudentType" name="Student"/>
+            <xs:element type="w:StudentType" name="Student"  maxOccurs="unbounded" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
     <!-- Блок описания студена -->
@@ -17,6 +17,7 @@
             <xs:element type="xs:string" name="Email"/>
             <xs:element type="w:AddressType" name="Address"/>
         </xs:sequence>
+        <xs:attribute type="xs:string" name="id" use="optional"/>
     </xs:complexType>
     <!-- Блок раскрывающий адрес студента -->
     <xs:complexType name="AddressType">
