@@ -1,4 +1,4 @@
-package Part_8;
+package Part_8.CreateReadCountXML;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -21,11 +21,15 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Objects;
 
+/**
+ * Создание файла XML по схеме
+ */
 public class XMLCreate {
     public static String namespace = "http://localhost"; //Пространство имен
     public static String fileName = "schema_studs"; //Имя файла
 
-    public XMLCreate(LinkedHashMap<String, LinkedHashMap> studentList, LinkedHashMap<String, LinkedHashMap> studentAddressList) throws SAXException, ParserConfigurationException, TransformerException {
+    public XMLCreate(LinkedHashMap<String, LinkedHashMap> studentList, LinkedHashMap<String, LinkedHashMap> studentAddressList)
+            throws SAXException, ParserConfigurationException, TransformerException {
         String useDirectory = Paths.get("")
                 .toAbsolutePath()
                 .toString();
@@ -34,15 +38,13 @@ public class XMLCreate {
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema schema = schemaFactory.newSchema(xsdFile); //Схема для XML
 
-
-
         Document document = createDocument(); //Создание экземпляра DocumentBuilder
 
         Element rootElement = createElement(document, "StudentList", "", new HashMap<String, String>());//Создание корневого элемента
 
         for (String studKey : studentList.keySet()){
             HashMap<String, String> arg = new HashMap<>();
-            arg.put("id", studKey);
+            arg.put("id", studKey); //добавляем атрибут ID
             Element studentElement = createChildElement(document, rootElement, "Student", "", arg);//Создание вложенных элементов
             LinkedHashMap<String, String> studValue = studentList.get(studKey);
             for (String studInfoKey : studValue.keySet()) {
@@ -58,7 +60,6 @@ public class XMLCreate {
                 }
             }
         }
-
         //Генерация XML-файла
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();

@@ -8,9 +8,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Path testFilePath = Paths.get(getUrl()); //путь до файла который надо прочести
+        Path filePath = Paths.get(getUrl()); //путь до файла который надо прочести
 
-        JavaNIOReadFile readFile = new JavaNIOReadFile(testFilePath); //считывание файла
+        JavaNIOReadFile readFile = new JavaNIOReadFile(filePath); //считывание файла
 
 
     }
@@ -24,8 +24,10 @@ public class Main {
         Main o = new Main(); //для получения имени пакета и класса
         String fileName = getClassName(o)+".java"; //получаем имя файла
         System.out.println("Имя файла = " + fileName);
+        String path = useDirectory+"\\src"+"\\"+getPackageName(o).replace('.', '\\')+"\\"+fileName;
+        System.out.println("Полный путь до файла = " + path);
         System.out.println("---------------------------");
-        return useDirectory+"\\src"+"\\"+getPackageName(o)+"\\"+fileName;
+        return path;
     }
 
     /**

@@ -1,7 +1,5 @@
 package Part_4.WriteAndReadThreads;
 
-import java.lang.reflect.Array;
-import java.util.Enumeration;
 import java.util.Random;
 import java.util.Vector;
 
@@ -12,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        fillVector(v1, 5); //заполняем вектор нулями значениями
+        fillVector(v1, 2); //заполняем вектор нулями значениями
         fillVector(v2, 4); //заполняем вектор нулями значениями
         fillVector(v3, 3); //заполняем вектор нулями значениями
 
@@ -113,32 +111,6 @@ public class Main {
     public static void fillVector(Vector<Double> v, int size){
         for (int i = 0; i < size; i++){
             v.add(0.0);
-        }
-    }
-
-    public static class Vector1{
-        private double[] points;
-        public int size;
-
-        public Vector1(int size){
-            this.size = size;
-            this.points = new double[size];
-        }
-
-        public void setElement(int key, double value){
-            this.points[key]=value;
-        }
-
-        public double getElement(int key){
-            return this.points[key];
-        }
-
-        public void viewPoints(){
-            System.out.print("[");
-            for (int i = 0; i < this.size; i++){
-                System.out.print(" "+String.format("%.2f",points[i]));
-            }
-            System.out.println(" ]");
         }
     }
 
@@ -247,11 +219,4 @@ public class Main {
             }
         }
     }
-
-    /**
-     * Добавьте в класс со статическими методами обработки векторов
-     * реализацию метода Vector synchronizedVector(Vector vector),
-     */
-    
-
 }

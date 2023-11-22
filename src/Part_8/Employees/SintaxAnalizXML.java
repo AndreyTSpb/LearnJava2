@@ -1,4 +1,4 @@
-package Part_8;
+package Part_8.Employees;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,7 +33,7 @@ public class SintaxAnalizXML {
         String useDirectory = Paths.get("")
                 .toAbsolutePath()
                 .toString();
-        String file = useDirectory+"/src/Part_8/"+fileName+".xml";
+        String file = useDirectory+"/src/Part_8/Employees/"+fileName+".xml";
         domParser(file);
         saxParser(file);
         staxParser(file);
@@ -50,8 +50,7 @@ public class SintaxAnalizXML {
             throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-
-        // подгрузка файла для расбора
+        // подгрузка файла для разбора
         Document document = builder.parse(new File(file));
 
         List<Employee> employees = new ArrayList<>();
@@ -137,7 +136,7 @@ public class SintaxAnalizXML {
                         break;
                 }
             }
-            //если достигли конечного тега, добавляем объект в список
+            //если достигли конечного тега Employee, добавляем объект в список
             if (nextEvent.isEndElement()) {
                 EndElement endElement = nextEvent.asEndElement();
                 if (endElement.getName().getLocalPart().equals("Employee")) {

@@ -1,8 +1,9 @@
-package Part_8;
+package Part_8.Employees;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import Part_8.Employees.Employee;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -25,53 +26,51 @@ public class MyHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
         if (qName.equalsIgnoreCase("Employee")) {
-            // create a new Employee and put it in Map
-            String id = attributes.getValue("id");
-            // initialize Employee object and set id attribute
-            emp = new Employee();
-            emp.setId(Integer.parseInt(id));
-            // initialize list
-            if (empList == null)
-                empList = new ArrayList<>();
+            // получаемзначение атрибута ID
+            int id = Integer.parseInt(attributes.getValue("id"));
+            emp = new Employee();// Инициальзируем новый объект Employee
+            emp.setId(id); //добавляем ему ID
+            if (empList == null) empList = new ArrayList<>();
         } else if (qName.equalsIgnoreCase("name")) {
-            // set boolean values for fields, will be used in setting Employee variables
-            bName = true;
+            bName = true; //отмечаем наличие данного тега
         } else if (qName.equalsIgnoreCase("surname")) {
-            // set boolean values for fields, will be used in setting Employee variables
-            bSurname = true;
+            bSurname = true; //отмечаем наличие данного тега
         }else if (qName.equalsIgnoreCase("age")) {
-            bAge = true;
+            bAge = true; //отмечаем наличие данного поля
         } else if (qName.equalsIgnoreCase("salary")) {
-            bSalary = true;
+            bSalary = true; //отмечаем наличие данного тега
         }
-        // create the data container
-        data = new StringBuilder();
+        data = new StringBuilder(); //
     }
 
+    @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if (bAge) {
-            // age element, set Employee age
+            // добавления возраста объекту
             emp.setAge(Integer.parseInt(data.toString()));
-            bAge = false;
+            bAge = false; //сбрасываем флаг
         } else if (bName) {
+            // добавления имени объекту
             emp.setName(data.toString());
-            bName = false;
+            bName = false; //сбрасываем флаг
         } else if (bSurname) {
+            //добавление фамилии
             emp.setSurname(data.toString());
-            bSurname = false;
+            bSurname = false; //сбрасываем флаг
         } else if (bSalary) {
+            //добавление зп
             emp.setSalary(Float.parseFloat(data.toString()));
-            bSalary = false;
+            bSalary = false; //сбрасываем флаг
         }
-
+        // если найден закрывабщий тег Employee
         if (qName.equalsIgnoreCase("Employee")) {
-            // add Employee object to list
+            // добавляем в масив объектов Employees
             empList.add(emp);
         }
     }
 
     @Override
     public void characters(char ch[], int start, int length) throws SAXException {
-        data.append(new String(ch, start, length));
+        data.append(new String(ch, start, length)); //добавляем значения тега
     }
 }

@@ -1,4 +1,4 @@
-package Part_8;
+package Part_8.CreateReadCountXML;
 
 import org.xml.sax.SAXException;
 
@@ -12,11 +12,12 @@ public class Main {
     public static LinkedHashMap<String, LinkedHashMap> studentAddressList;
 
     public static void main(String[] args) throws ParserConfigurationException, TransformerException, SAXException, IOException {
-        studentsArr();
+        studentsArr(); //заполнение массива данными для создания файла
+        //создание файла
         new XMLCreate(studentList, studentAddressList);
-
+        //чтение файла
         new SAXParser();
-
+        //подсчет уникального количества
         new CountXML();
     }
 
